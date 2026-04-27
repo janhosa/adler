@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADLER – Dein Sparring-Partner nach Alfred Adler</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark: #1c1b2e;
+      --gold: #c9a55a;
+      --gold-light: #e8c97a;
+      --cream: #f8f4ed;
+      --white: #ffffff;
+      --text: #1a1a1a;
+      --muted: #6b6b6b;
+      --border: #e8e4dc;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(28, 27, 46, 0.95);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      text-decoration: none;
+    }
+
+    .nav-link {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: var(--dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,165,90,0.08) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(5rem, 15vw, 10rem);
+      color: var(--white);
+      letter-spacing: 0.1em;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      color: rgba(255,255,255,0.65);
+      max-width: 560px;
+      margin-bottom: 3rem;
+      line-height: 1.6;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 1rem 2.5rem;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .hero-cta:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    .hero-quote {
+      position: absolute;
+      bottom: 2.5rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.05em;
+      font-style: italic;
+    }
+
+    /* SECTIONS */
+    section { padding: 6rem 2rem; }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      line-height: 1.25;
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+    }
+
+    .section-text {
+      font-size: 1.05rem;
+      color: #3a3a3a;
+      max-width: 640px;
+      line-height: 1.8;
+    }
+
+    /* WHAT IS */
+    .what-is {
+      background: var(--cream);
+    }
+
+    .quote-block {
+      margin-top: 3rem;
+      border-left: 3px solid var(--gold);
+      padding: 1.5rem 2rem;
+      background: white;
+    }
+
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--dark);
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+
+    .quote-attr {
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .pillar {
+      padding: 1.5rem;
+      background: white;
+      border-top: 2px solid var(--gold);
+    }
+
+    .pillar-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+
+    .pillar-text {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* STEPS */
+    .steps-section { background: var(--white); }
+
+    .steps {
+      margin-top: 3.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .step:last-child { border-bottom: none; }
+
+    .step-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      padding-top: 0.2rem;
+    }
+
+    .step-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .step-text {
+      font-size: 0.95rem;
+      color: #4a4a4a;
+      line-height: 1.7;
+    }
+
+    .step-text a {
+      color: var(--dark);
+      font-weight: 600;
+      text-decoration: underline;
+      text-decoration-color: var(--gold);
+      text-underline-offset: 3px;
+    }
+
+    .step-highlight {
+      display: inline-block;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+      font-family: 'Inter', monospace;
+      font-size: 0.85rem;
+      color: var(--dark);
+      font-weight: 500;
+      margin: 0.2rem 0;
+    }
+
+    .step-note {
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* DOWNLOADS */
+    .downloads-section { background: var(--dark); }
+
+    .downloads-section .section-title { color: var(--white); }
+    .downloads-section .section-label { color: var(--gold); }
+    .downloads-section .section-text { color: rgba(255,255,255,0.6); }
+
+    .download-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .download-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(201,165,90,0.2);
+      padding: 1.5rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .download-card:hover {
+      border-color: var(--gold);
+      background: rgba(201,165,90,0.08);
+    }
+
+    .download-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .download-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .download-desc {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(201,165,90,0.3);
+      padding-bottom: 0.2rem;
+      transition: border-color 0.2s;
+    }
+
+    .download-btn:hover { border-color: var(--gold); }
+
+    .download-btn svg {
+      width: 14px; height: 14px;
+    }
+
+    .download-all {
+      margin-top: 2.5rem;
+      text-align: center;
+    }
+
+    .download-all-btn {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.9rem 2.5rem;
+      border-radius: 2px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .download-all-btn:hover {
+      background: var(--gold);
+      color: var(--dark);
+    }
+
+    /* MEMORY */
+    .memory-section { background: var(--cream); }
+
+    .memory-box {
+      margin-top: 2.5rem;
+      background: white;
+      border-left: 3px solid var(--gold);
+      padding: 2rem 2.5rem;
+    }
+
+    .memory-box pre {
+      font-family: 'Inter', monospace;
+      font-size: 0.85rem;
+      color: #3a3a3a;
+      line-height: 1.8;
+      white-space: pre-wrap;
+      margin-top: 1rem;
+    }
+
+    /* TIPS */
+    .tips-section { background: var(--white); }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .tip {
+      padding: 1.5rem;
+      background: var(--cream);
+    }
+
+    .tip-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .tip-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+      color: var(--dark);
+    }
+
+    .tip-text {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* BOOKS */
+    .books-section { background: var(--cream); }
+
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .book-card {
+      background: var(--white);
+      padding: 2.5rem;
+      border-bottom: 3px solid var(--gold);
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .book-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: var(--gold);
+      line-height: 1;
+      opacity: 0.4;
+    }
+
+    .book-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+
+    .book-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: -0.6rem;
+    }
+
+    .book-authors {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .book-desc {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.7;
+      flex-grow: 1;
+    }
+
+    .book-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--dark);
+      border-left: 2px solid var(--gold);
+      padding-left: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .book-links {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    .book-link {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--dark);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.9rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .book-link:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .books-note {
+      margin-top: 3rem;
+      padding: 1.5rem 2rem;
+      background: white;
+      border-left: 3px solid var(--gold);
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .books-note strong {
+      color: var(--dark);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--gold);
+      letter-spacing: 0.2em;
+      margin-bottom: 1rem;
+    }
+
+    .footer-text {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.7;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .step { grid-template-columns: 50px 1fr; gap: 1rem; }
+      .step-number { font-size: 2.5rem; }
+      nav { padding: 1rem; }
+      .nav-link { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">ADLER</a>
+  <a href="#anleitung" class="nav-link">Anleitung</a>
+  <a href="#buecher" class="nav-link">Bücher</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Alfred Adlers Individualpsychologie</p>
+  <h1 class="hero-title">ADLER</h1>
+  <p class="hero-subtitle">Dein persönlicher Sparring-Partner für Alltagssituationen. Das Buch – angewendet. 24/7.</p>
+  <a href="#anleitung" class="hero-cta">Jetzt starten</a>
+  <p class="hero-quote">„Das Wichtigste ist nicht was uns passiert – sondern was wir daraus machen." — Alfred Adler</p>
+</section>
+
+<!-- WAS IST ADLER -->
+<section class="what-is">
+  <div class="container">
+    <p class="section-label">Was ist ADLER</p>
+    <h2 class="section-title">Kein Therapeut.<br>Kein Coach.<br>Ein Gesprächspartner.</h2>
+    <p class="section-text">
+      ADLER basiert auf Alfred Adlers Individualpsychologie – einer der einflussreichsten psychologischen Schulen des 20. Jahrhunderts. Kein Raten, keine Ratschläge. ADLER fragt, spiegelt und fordert heraus. Das Gespräch tut den Rest.
+    </p>
+    <p class="section-text" style="margin-top:1rem;">
+      Du musst Adler nicht kennen. Das Gespräch erklärt mehr als jede Theorie. Es kann manchmal unbequem werden. Das ist gut so.
+    </p>
+
+    <div class="quote-block">
+      <p class="quote-text">„Der Mensch wäre nur dann durch seine Vergangenheit determiniert, wenn er bereit wäre, dieselbe Haltung wie bisher beizubehalten."</p>
+      <p class="quote-attr">Alfred Adler</p>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <p class="pillar-title">Aufgabentrennung</p>
+        <p class="pillar-text">Was du tust ist deine Sache. Was andere darüber denken – ihre. Kein Grübeln mehr über fremde Urteile.</p>
+      </div>
+      <div class="pillar">
+        <p class="pillar-title">Teleologie</p>
+        <p class="pillar-text">Adler fragt nicht <em>warum</em> du so bist – sondern <em>wozu</em>. Was einem Ziel dient, kann man ändern.</p>
+      </div>
+      <div class="pillar">
+        <p class="pillar-title">Lebensstil</p>
+        <p class="pillar-text">Jeder Mensch trägt eine unsichtbare Brille. ADLER hilft dir, sie zu sehen – und zu entscheiden ob du sie weiter tragen willst.</p>
+      </div>
+      <div class="pillar">
+        <p class="pillar-title">Ermutigung</p>
+        <p class="pillar-text">Nicht Lob. Nicht Bestätigung. Ermutigung zeigt dir was du bereits getan hast – und macht den nächsten Schritt vorstellbar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANLEITUNG -->
+<section class="steps-section" id="anleitung">
+  <div class="container">
+    <p class="section-label">Anleitung</p>
+    <h2 class="section-title">In 5 Minuten startklar.</h2>
+    <p class="section-text">Du brauchst keinen eigenen Server, keine App, keine Kreditkarte. Nur einen kostenlosen Account.</p>
+
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-number">1</div>
+        <div>
+          <p class="step-title">Claude.ai Account erstellen</p>
+          <p class="step-text">
+            Geh auf <a href="https://claude.ai" target="_blank">claude.ai</a> und klick auf <span class="step-highlight">Sign up</span>. Du kannst dich kostenlos mit deiner E-Mail-Adresse registrieren.<br><br>
+            Claude ist die KI die ADLER antreibt – entwickelt von Anthropic.
+          </p>
+          <p class="step-note">💡 Der kostenlose Account reicht zum Ausprobieren. Für regelmäßige Nutzung empfiehlt sich der Pro-Account (~20€/Monat) – damit gibt es keine Gesprächslimits.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">2</div>
+        <div>
+          <p class="step-title">Neues Projekt anlegen</p>
+          <p class="step-text">
+            Nach dem Login siehst du links eine Sidebar. Klick dort auf <span class="step-highlight">New Project</span>.<br><br>
+            Gib dem Projekt den Namen <span class="step-highlight">ADLER</span>.
+          </p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">3</div>
+        <div>
+          <p class="step-title">ADLER-Anleitung einfügen</p>
+          <p class="step-text">
+            Im Projekt siehst du <span class="step-highlight">Set project instructions</span>. Klick darauf.<br><br>
+            Lade jetzt die Datei <strong>ADLER-claude-ai-project-instructions.md</strong> herunter (↓ unten im Download-Bereich), öffne sie mit einem Texteditor (z.B. Notepad / TextEdit), kopiere den gesamten Text und füge ihn in das Feld ein. Speichern.
+          </p>
+          <p class="step-note">💡 Auf dem iPhone/iPad: Lade die Datei herunter → öffne sie in der Dateien-App → kopiere den Text.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">4</div>
+        <div>
+          <p class="step-title">Wissensdateien hochladen</p>
+          <p class="step-text">
+            Im selben Projekt findest du <span class="step-highlight">Add content</span> oder <span class="step-highlight">Knowledge</span>. Lade dort diese drei Dateien hoch:
+          </p>
+          <br>
+          <p class="step-text">
+            📄 <strong>adler-brain.md</strong> — die Konzepte<br>
+            📄 <strong>adler-anekdoten.md</strong> — Geschichten aus der Praxis<br>
+            📄 <strong>adler-skill-gespraechsskript.md</strong> — Referenz für Ton und Rhythmus
+          </p>
+          <p class="step-note">Alle drei Dateien findest du ↓ im Download-Bereich.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">5</div>
+        <div>
+          <p class="step-title">Loschatten</p>
+          <p class="step-text">
+            Klick auf <span class="step-highlight">New Chat</span> in deinem ADLER-Projekt.<br><br>
+            Schreib einfach <strong>„Hallo"</strong> – oder beschreibe direkt was dich gerade beschäftigt. ADLER stellt dir ein paar kurze Fragen zum Einstieg. Dann geht's los.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOADS -->
+<section class="downloads-section" id="downloads">
+  <div class="container">
+    <p class="section-label">Downloads</p>
+    <h2 class="section-title">Alle Dateien die du brauchst.</h2>
+    <p class="section-text">Lade alle Dateien herunter und folge der Anleitung oben. Einmalig einrichten – danach immer verfügbar.</p>
+
+    <div class="download-grid">
+
+      <div class="download-card">
+        <p class="download-tag">Pflicht · Schritt 3</p>
+        <p class="download-name">ADLER Instructions</p>
+        <p class="download-desc">Die Anweisungen für ADLER. Inhalt in die Projekt-Instructions einfügen.</p>
+        <a href="./ADLER-claude-ai-project-instructions.md" download class="download-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Herunterladen
+        </a>
+      </div>
+
+      <div class="download-card">
+        <p class="download-tag">Pflicht · Schritt 4</p>
+        <p class="download-name">adler-brain.md</p>
+        <p class="download-desc">Alle Adler-Konzepte mit operativen Fragen und Erkennungszeichen.</p>
+        <a href="./adler-brain.md" download class="download-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Herunterladen
+        </a>
+      </div>
+
+      <div class="download-card">
+        <p class="download-tag">Pflicht · Schritt 4</p>
+        <p class="download-name">adler-anekdoten.md</p>
+        <p class="download-desc">7 Geschichten aus der Praxis die ADLER als Spiegel einsetzen kann.</p>
+        <a href="./adler-anekdoten.md" download class="download-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Herunterladen
+        </a>
+      </div>
+
+      <div class="download-card">
+        <p class="download-tag">Pflicht · Schritt 4</p>
+        <p class="download-name">adler-skill-gespraechsskript.md</p>
+        <p class="download-desc">Referenz-Gesprächsskripte für Ton, Rhythmus und Gesprächsflow.</p>
+        <a href="./adler-skill-gespraechsskript.md" download class="download-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Herunterladen
+        </a>
+      </div>
+
+      <div class="download-card">
+        <p class="download-tag">Optional · Für Cowork-Nutzer</p>
+        <p class="download-name">adler-sparring.skill</p>
+        <p class="download-desc">Installierbare Skill-Datei für Claude Cowork. Doppelklick zum Installieren.</p>
+        <a href="./adler-sparring.skill" download class="download-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Herunterladen
+        </a>
+      </div>
+
+      <div class="download-card">
+        <p class="download-tag">Lesetipp</p>
+        <p class="download-name">ADLER-Anleitung.md</p>
+        <p class="download-desc">Die vollständige Anleitung als Dokument – zum Weiterschicken oder Ausdrucken.</p>
+        <a href="./ADLER-Anleitung.md" download class="download-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Herunterladen
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MEMORY -->
+<section class="memory-section">
+  <div class="container">
+    <p class="section-label">Das Gedächtnis</p>
+    <h2 class="section-title">ADLER erinnert sich – wenn du hilfst.</h2>
+    <p class="section-text">
+      Jedes neue Gespräch in Claude.ai startet frisch. Damit ADLER dich trotzdem kennt, gibt es ein einfaches System: Am Ende jedes guten Gesprächs erstellt ADLER automatisch dein persönliches Profil – einen kurzen Text den du beim nächsten Gespräch einfach einfügst.
+    </p>
+
+    <div class="memory-box">
+      <p style="font-weight:600; font-size:0.9rem; color:var(--dark);">So sieht dein ADLER-Profil aus:</p>
+      <pre>ADLER-Profil: [Dein Name]
+Kenntnisstand: Neuling / Leser / Vertieft
+Lebenswelt: [Beruf, Beziehungen, Kontext]
+Muster: [was sich im Gespräch gezeigt hat]
+Aktive Themen: [was dich gerade beschäftigt]
+Eigene Formulierungen: [deine Schlüsselsätze]
+Letzte Session: [Datum / Thema]</pre>
+    </div>
+
+    <p class="section-text" style="margin-top:1.5rem; font-size:0.95rem; color:var(--muted);">
+      Diesen Text am Anfang des nächsten Chats einfügen → ADLER kennt dich sofort wieder und macht dort weiter wo ihr aufgehört habt.
+    </p>
+  </div>
+</section>
+
+<!-- TIPS -->
+<section class="tips-section">
+  <div class="container">
+    <p class="section-label">Tipps</p>
+    <h2 class="section-title">So wird das Gespräch gut.</h2>
+
+    <div class="tips-grid">
+      <div class="tip">
+        <div class="tip-icon">🎯</div>
+        <p class="tip-title">Sei konkret</p>
+        <p class="tip-text">Nicht „ich habe Probleme in der Arbeit" – sondern „letzte Woche war folgendes…" Konkrete Situationen öffnen mehr als abstrakte Beschreibungen.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-icon">⚡</div>
+        <p class="tip-title">Lass dich herausfordern</p>
+        <p class="tip-text">Wenn eine Frage unbequem ist – das ist meistens der interessanteste Moment. Bleib dabei statt auszuweichen.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-icon">🔍</div>
+        <p class="tip-title">Kein Thema ist zu klein</p>
+        <p class="tip-text">Oft steckt in einer scheinbar banalen Situation das Wesentliche. Ein Taxi, ein Missverständnis – alles kann ein Einstieg sein.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-icon">🧭</div>
+        <p class="tip-title">Du bestimmst das Tempo</p>
+        <p class="tip-text">ADLER folgt dir – nicht umgekehrt. Wenn ein Thema zu nah ist, sag es einfach. Kein Druck, kein Programm.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-icon">📝</div>
+        <p class="tip-title">Profil nicht vergessen</p>
+        <p class="tip-text">Lass dir am Ende jedes Gesprächs dein Profil erstellen und speichere es. Das ist das Herzstück des Gedächtnisses.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-icon">🔄</div>
+        <p class="tip-title">Komm wieder</p>
+        <p class="tip-text">Ein Gespräch ist ein Anfang. Adlers Ideen brauchen Zeit um zu landen. Mit jedem Gespräch wird das Bild klarer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKS -->
+<section class="books-section" id="buecher">
+  <div class="container">
+    <p class="section-label">Die Grundlage</p>
+    <h2 class="section-title">Die Bücher hinter ADLER.</h2>
+    <p class="section-text">
+      ADLER basiert auf Alfred Adlers Individualpsychologie — einer der tiefgründigsten und gleichzeitig zugänglichsten psychologischen Schulen des 20. Jahrhunderts. Diese beiden Bücher sind der beste Einstieg.
+    </p>
+
+    <div class="books-grid">
+
+      <div class="book-card">
+        <p class="book-number">I</p>
+        <p class="book-title">Du kannst dein Leben ändern</p>
+        <p class="book-subtitle">Warum Mut dein größter Schatz ist</p>
+        <p class="book-authors">Ichiro Kishimi &amp; Fumitake Koga</p>
+        <p class="book-desc">
+          Ein Gespräch zwischen einem jungen Mann und einem Philosophen. Über Nächte. Über Widerspruch. Adlers Gedanken — radikal, ungewohnt, manchmal unbequem — werden in einem Socratischen Dialog lebendig. Das Buch das viele Menschen nachhaltig verändert hat.
+        </p>
+        <p class="book-quote">„Das Leben ist einfach — aber wir machen es kompliziert."</p>
+        <div class="book-links">
+          <a href="https://www.thalia.at/suche?sq=du+kannst+dein+leben+ändern+kishimi" target="_blank" class="book-link">Thalia</a>
+          <a href="https://www.amazon.de/s?k=du+kannst+dein+leben+%C3%A4ndern+kishimi" target="_blank" class="book-link">Amazon</a>
+          <a href="https://www.buecher.at/suche/?q=kishimi+koga+leben+ändern" target="_blank" class="book-link">bücher.at</a>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <p class="book-number">II</p>
+        <p class="book-title">Du kannst dein Leben weiter ändern</p>
+        <p class="book-subtitle">Warum Liebe und Gemeinschaft der Schlüssel sind</p>
+        <p class="book-authors">Ichiro Kishimi &amp; Fumitake Koga</p>
+        <p class="book-desc">
+          Die Fortsetzung. Der junge Mann ist Lehrer geworden — und zweifelt. Diesmal geht es tiefer: Liebe, Erziehung, Gemeinschaft, der Mut zur Unvollkommenheit im Alltag. Adlers Antwort auf die Frage: Wie lebt man mit anderen?
+        </p>
+        <p class="book-quote">„Wer geliebt werden will, muss zuerst lieben lernen."</p>
+        <div class="book-links">
+          <a href="https://www.thalia.at/suche?sq=du+kannst+dein+leben+weiter+ändern+kishimi" target="_blank" class="book-link">Thalia</a>
+          <a href="https://www.amazon.de/s?k=du+kannst+dein+leben+weiter+%C3%A4ndern+kishimi" target="_blank" class="book-link">Amazon</a>
+          <a href="https://www.buecher.at/suche/?q=kishimi+koga+weiter+ändern" target="_blank" class="book-link">bücher.at</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="books-note">
+      <strong>Muss ich die Bücher gelesen haben?</strong> Nein — ADLER erklärt alles was du brauchst im Gespräch, durch Erleben statt durch Theorie. Aber wer die Bücher kennt, wird in jedem Gespräch mehr erkennen. Sie sind eine Empfehlung, keine Voraussetzung.
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-logo">ADLER</p>
+  <p class="footer-text">
+    Idee, Konzept &amp; © Jan Hosa.<br>
+    Basiert auf Alfred Adlers Individualpsychologie (1870–1937).<br>
+    Angetrieben von Claude (Anthropic).<br><br>
+    ADLER ist kein Ersatz für professionelle psychologische oder therapeutische Unterstützung.
+  </p>
+</footer>
+
+</body>
+</html>
